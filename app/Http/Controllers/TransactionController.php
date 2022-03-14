@@ -6,13 +6,13 @@ use App\Models\Book;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Payment\TripayController;
+use App\Services\TripayService;
 
 class TransactionController extends Controller
 {
     public function show($reference)
     {
-        $tripay = new TripayController();
+        $tripay = new TripayService();
         $detail = $tripay->detailTranscation($reference);
         return view('transaction.show',compact('detail'));
     }
@@ -22,7 +22,7 @@ class TransactionController extends Controller
         $book = Book::find($request->book_id);
         $method = $request->method;
         
-        $tripay = new TripayController();
+        $tripay = new TripayService();
         $transaction = $tripay->requestTransaction($method,$book);
         // create new data in transaction model
         $user = Auth::user();

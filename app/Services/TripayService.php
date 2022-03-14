@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Payment;
+namespace App\Services;
 
 use App\Models\Book;
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class TripayController extends Controller
-{
+class TripayService{
     public function getPaymentsChannels()
     {
         
@@ -113,4 +109,4 @@ class TripayController extends Controller
         $response = json_decode($response)->data;
        return $response?:$error;
     }
-} 
+}

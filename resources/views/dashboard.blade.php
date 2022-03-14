@@ -69,10 +69,17 @@
                                                     Rp. {{ number_format($item->total_amount) }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span
-                                                        class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                                        {{ Str::upper($item->status) }}
-                                                    </span>
+                                                    @if ($item->status == 'paid')
+                                                        <span
+                                                            class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                            {{ Str::upper($item->status) }}
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
+                                                            {{ Str::upper($item->status) }}
+                                                        </span>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
